@@ -3,7 +3,7 @@ import { Task } from "@/models/schema";
 import { NextRequest, NextResponse } from "next/server";
 
 // Create a task
-export async function POST(request: NextRequest) {
+export async function POST(request: Request) {
 	const { task } = await request.json();
 	await connect_to_database();
 	await Task.create({ task });
@@ -13,7 +13,7 @@ export async function POST(request: NextRequest) {
 			status: 201,
 			headers: {
 				"Access-Control-Allow-Origin": "*",
-				"Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
+				"Access-Control-Allow-Methods": "POST",
 				"Access-Control-Allow-Headers": "Content-Type, Authorization",
 			},
 		}
@@ -21,7 +21,7 @@ export async function POST(request: NextRequest) {
 }
 
 // Read all tasks
-export async function GET(request: NextRequest) {
+export async function GET(request: Request) {
 	await connect_to_database();
 	const tasks = await Task.find();
 	return NextResponse.json({ tasks });
@@ -38,7 +38,7 @@ export async function DELETE(request: NextRequest) {
 			status: 200,
 			headers: {
 				"Access-Control-Allow-Origin": "*",
-				"Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
+				"Access-Control-Allow-Methods": "DELETE",
 				"Access-Control-Allow-Headers": "Content-Type, Authorization",
 			},
 		}
