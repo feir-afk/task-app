@@ -1,5 +1,6 @@
 "use client";
 
+import { domain } from "@/domain";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
@@ -10,7 +11,7 @@ export default function EditForm({ id, task }: any) {
 	const handleSubmit = async (e: any) => {
 		e.preventDefault();
 		try {
-			const res = await fetch(`http://localhost:3000/api/tasks/${id}`, {
+			const res = await fetch(`${domain}/api/tasks/${id}`, {
 				method: "PUT",
 				headers: {
 					"Content-type": "application/json",

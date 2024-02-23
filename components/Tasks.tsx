@@ -1,9 +1,10 @@
 import Link from "next/link";
 import Delete from "./Delete-Button";
+import { domain } from "@/domain";
 
 export const getTasks = async () => {
 	try {
-		const res = await fetch(`http://localhost:3000/api/tasks`, {
+		const res = await fetch(`${domain}/api/tasks`, {
 			cache: "no-store",
 		});
 

@@ -1,8 +1,9 @@
 import EditForm from "@/components/Edit-Task-Form";
+import { domain } from "@/domain";
 
 const getTaskById = async (id: any) => {
 	try {
-		const res = await fetch(`http://localhost:3000/api/tasks/${id}`, {
+		const res = await fetch(`${domain}/api/tasks/${id}`, {
 			cache: "no-store",
 		});
 		if (!res.ok) {

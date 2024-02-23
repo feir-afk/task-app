@@ -1,11 +1,12 @@
 "use client";
 
+import { domain } from "@/domain";
 import { useRouter } from "next/navigation";
 
 export default function Delete({ id }: any) {
 	const router = useRouter();
 	const deleteTask = async () => {
-		const res = await fetch(`http://localhost:3000/api/tasks?id=${id}`, {
+		const res = await fetch(`${domain}/api/tasks?id=${id}`, {
 			method: "DELETE",
 		});
 

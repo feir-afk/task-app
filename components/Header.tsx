@@ -1,5 +1,6 @@
 "use client";
 
+import { domain } from "@/domain";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
@@ -18,7 +19,7 @@ export default function Header() {
 		}
 
 		try {
-			const res = await fetch("http://localhost:3000/api/tasks", {
+			const res = await fetch(`${domain}/api/tasks`, {
 				method: "POST",
 				headers: {
 					"Content-type": "application/json",
