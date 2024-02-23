@@ -44,7 +44,7 @@ export default function Header() {
 			className="flex justify-center items-center p-4 gap-4"
 		>
 			<input
-				onChange={(e) => setTask(e.target.value)}
+				onChange={(e) => setTask(e.target.value.slice(0, 40))}
 				value={task}
 				type="text"
 				placeholder="Add new task"
