@@ -20,7 +20,7 @@ export const getTasks = async () => {
 
 export default async function Tasks() {
 	const data = await getTasks();
-	const tasks = data ? data.tasks : [];
+	const tasks: Array<Object> = data ? data.tasks : [];
 
 	return (
 		<div className="overflow-x-auto mx-4 mb-4 rounded-lg border border-slate-200">

@@ -6,20 +6,22 @@ import { useState } from "react";
 
 export default function Header() {
 	// Create a task
-	const [task, setTask] = useState("");
+	const [task, setTask] = useState<string>("");
 	const router = useRouter();
 
 	const handleSubmit = async (e: any) => {
 		e.preventDefault();
 
-		if (!task) {
-			// alert message
+		// using regex to check if input empty or whitespace only
+		const isWhitespaceString: boolean = !task.replace(/\s/g, "").length;
+
+		if (isWhitespaceString) {
 			alert("Task input is empty!");
 			return;
 		}
 
 		try {
-			const res = await fetch(`${domain}/api/tasks`, {
+			const res: Response = await fetch(`${domain}/api/tasks`, {
 				method: "POST",
 				headers: {
 					"Content-type": "application/json",
@@ -30,7 +32,7 @@ export default function Header() {
 			if (res.ok) {
 				router.refresh();
 			} else {
-				throw new Error("Failed to create a new");
+				throw new Error("Failed to create a new task");
 			}
 		} catch (error) {
 			console.log(error);
@@ -45,7 +47,7 @@ export default function Header() {
 			className="flex justify-center items-center p-4 gap-4"
 		>
 			<input
-				onChange={(e) => setTask(e.target.value.slice(0, 40))}
+				onChange={(event) => setTask(event.target.value.slice(0, 40))}
 				value={task}
 				type="text"
 				placeholder="Add new task"
