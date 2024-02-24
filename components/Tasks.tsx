@@ -4,7 +4,7 @@ import { domain } from "@/domain";
 
 export const getTasks = async () => {
 	try {
-		const res = await fetch(`${domain}/api/tasks`, {
+		const res: Response = await fetch(`${domain}/api/tasks`, {
 			cache: "no-store",
 		});
 
